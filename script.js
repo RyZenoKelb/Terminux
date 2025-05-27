@@ -32,6 +32,16 @@ const translations = {
         dateDesc: '- Show date and time',
         echoDesc: '- Display text',
         treeDesc: '- Show file tree structure',
+        funCommands: 'Fun commands:',
+        neofetchDesc: '- Show system information',
+        cowsayDesc: '- ASCII cow with message',
+        slDesc: '- Steam locomotive animation',
+        matrixDesc: '- Matrix digital rain effect',
+        fortuneDesc: '- Random coding wisdom',
+        lolcatDesc: '- Colorize text output',
+        figletDesc: '- ASCII art text generator',
+        jokeDesc: '- Random programming joke',
+        weatherDesc: '- Simulated weather info',
         shortcuts: 'Shortcuts:',
         arrowKeys: '- Navigate history',
         tabKey: '- Autocompletion',
@@ -82,6 +92,16 @@ const translations = {
         dateDesc: '- Afficher la date et l\'heure',
         echoDesc: '- Afficher du texte',
         treeDesc: '- Afficher l\'arborescence des fichiers',
+        funCommands: 'Commandes amusantes:',
+        neofetchDesc: '- Afficher les informations système',
+        cowsayDesc: '- Vache ASCII avec message',
+        slDesc: '- Animation de locomotive à vapeur',
+        matrixDesc: '- Effet pluie numérique Matrix',
+        fortuneDesc: '- Sagesse aléatoire de codeur',
+        lolcatDesc: '- Coloriser le texte',
+        figletDesc: '- Générateur texte ASCII art',
+        jokeDesc: '- Blague de programmation aléatoire',
+        weatherDesc: '- Infos météo simulées',
         shortcuts: 'Raccourcis:',
         arrowKeys: '- Naviguer dans l\'historique',
         tabKey: '- Autocomplétion',
@@ -185,6 +205,17 @@ const commands = {
     date            ${t('dateDesc')}
     echo [text]     ${t('echoDesc')}
     tree            ${t('treeDesc')}
+    
+    ${t('funCommands')}
+    neofetch        ${t('neofetchDesc')}
+    cowsay [text]   ${t('cowsayDesc')}
+    sl              ${t('slDesc')}
+    matrix          ${t('matrixDesc')}
+    fortune         ${t('fortuneDesc')}
+    lolcat [text]   ${t('lolcatDesc')}
+    figlet [text]   ${t('figletDesc')}
+    joke            ${t('jokeDesc')}
+    weather         ${t('weatherDesc')}
     
     ${t('shortcuts')}
     ↑/↓            ${t('arrowKeys')}
@@ -353,6 +384,169 @@ const commands = {
     export: () => {
         exportAllFiles();
         return `<span class="success">${t('exportInProgress')}</span>`;
+    },
+
+    // Easter Eggs
+    neofetch: () => {
+        const ascii = `
+    <span class="info">╭─────────────────────────╮</span>
+    <span class="info">│</span>  <span class="success">Terminux 1.0</span>          <span class="info"> │</span>
+    <span class="info">│</span>  <span class="info">────────────────────</span>   <span class="info">│</span>
+    <span class="info">│</span>  <span class="warning">OS:</span> Ubuntu (Web)      <span class="info"> │</span>
+    <span class="info">│</span>  <span class="warning">Shell:</span> terminux       <span class="info"> │</span>
+    <span class="info">│</span>  <span class="warning">Resolution:</span> ${window.innerWidth}x${window.innerHeight} <span class="info">  │</span>
+    <span class="info">│</span>  <span class="warning">Terminal:</span> terminux.live<span class="info">│</span>
+    <span class="info">│</span>  <span class="warning">Language:</span> ${isEnglish ? 'English' : 'Français'}    <span class="info"> │</span>
+    <span class="info">╰─────────────────────────╯</span>`;
+        return ascii;
+    },
+
+    cowsay: (args) => {
+        const message = args || (isEnglish ? 'Moo!' : 'Meuh!');
+        const topLine = '─'.repeat(message.length + 2);
+        return `
+     <span class="warning">╭─${topLine}─╮</span>
+     <span class="warning">│</span>  ${message} <span class="warning"> │</span>
+     <span class="warning">╰─${topLine}─╯</span>
+        <span class="success">\\   ^__^</span>
+         <span class="success">\\  (oo)\\_______</span>
+            <span class="success">(__) \\       )\\/\\</span>
+                <span class="success">||----w |</span>
+                <span class="success">||     ||</span>`;
+    },
+
+    sl: () => {
+        return `<span class="warning">
+      ====        ________                ___________
+  _D _|  |_______/        \\__I_I_____===__|_________|
+   |(_)---  |   H\\________/ |   |        =|___ ___|      
+   /     |  |   H  |  |     |   |         ||_| |_||     
+  |      |  |   H  |__--------------------| [___] |     
+  | ________|___H__/__|_____/[][]~\\_______|       |     
+  |/ |   |-----------I_____I [][] []  D   |=======|__
+__/ =| o |=-~~\\  /~~\\  /~~\\  /~~\\ ____Y___________|__
+ |/-=|___|=O=====O=====O=====O   |_____/~\\___/      
+  \\_/      \\__/  \\__/  \\__/  \\__/      \\_/
+</span>
+<span class="info">${isEnglish ? 'You have been expecting a train, haven\'t you? This is SL (Steam Locomotive)!' : 'Vous vous attendiez à un train, n\'est-ce pas? Voici SL (Locomotive à Vapeur)!'}</span>`;
+    },
+
+    // Nouveaux Easter Eggs
+    matrix: () => {
+        const chars = ['0', '1', ' ', ' ', ' '];
+        let output = '<span class="success">';
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 60; j++) {
+                output += chars[Math.floor(Math.random() * chars.length)];
+            }
+            output += '\n';
+        }
+        output += '</span>';
+        return output + `\n<span class="info">${isEnglish ? 'Welcome to the Matrix...' : 'Bienvenue dans la Matrice...'}</span>`;
+    },
+
+    fortune: () => {
+        const fortunes = isEnglish ? [
+            "Today is a good day to code! 💻",
+            "The best way to predict the future is to implement it.",
+            "Code is poetry written for machines to understand.",
+            "Every expert was once a beginner. Keep coding! 🚀",
+            "Debugging is twice as hard as writing code in the first place.",
+            "Talk is cheap. Show me the code. - Linus Torvalds",
+            "Programs must be written for people to read. - Harold Abelson"
+        ] : [
+            "Aujourd'hui est un bon jour pour coder! 💻",
+            "La meilleure façon de prédire l'avenir est de l'implémenter.",
+            "Le code est de la poésie écrite pour que les machines comprennent.",
+            "Chaque expert était autrefois débutant. Continuez à coder! 🚀",
+            "Déboguer est deux fois plus difficile qu'écrire du code.",
+            "Les paroles sont gratuites. Montrez-moi le code. - Linus Torvalds",
+            "Les programmes doivent être écrits pour que les gens les lisent."
+        ];
+        return `<span class="warning">💫 ${fortunes[Math.floor(Math.random() * fortunes.length)]}</span>`;
+    },
+
+    lolcat: (args) => {
+        const text = args || 'Terminux';
+        const colors = ['error', 'warning', 'success', 'info'];
+        let output = '';
+        for (let i = 0; i < text.length; i++) {
+            const color = colors[i % colors.length];
+            output += `<span class="${color}">${text[i]}</span>`;
+        }
+        return output;
+    },
+
+    figlet: (args) => {
+        const text = (args || 'TERMINUX').toUpperCase().slice(0, 8);
+        if (text === 'TERMINUX') {
+            return `<span class="success">
+████████ ████████ ██████   ███    ███ ██ ███    ██ ██    ██ ██   ██ 
+   ██    ██       ██   ██  ████  ████ ██ ████   ██ ██    ██  ██ ██  
+   ██    █████    ██████   ██ ████ ██ ██ ██ ██  ██ ██    ██   ███   
+   ██    ██       ██   ██  ██  ██  ██ ██ ██  ██ ██ ██    ██  ██ ██  
+   ██    ████████ ██   ██  ██      ██ ██ ██   ████  ██████  ██   ██ 
+</span>`;
+        } else {
+            let output = '<span class="success">\n';
+            output += `${text}\n`;
+            output += '█'.repeat(text.length) + '\n';
+            output += '</span>';
+            return output;
+        }
+    },
+
+    joke: () => {
+        const jokes = isEnglish ? [
+            "Why do programmers prefer dark mode?\nBecause light attracts bugs! 🐛",
+            "How many programmers does it take to change a light bulb?\nNone. That's a hardware problem. 💡",
+            "Why do Java developers wear glasses?\nBecause they can't C# 👓",
+            "What's the object-oriented way to become wealthy?\nInheritance! 💰",
+            "Why don't programmers like nature?\nIt has too many bugs! 🌿🐛"
+        ] : [
+            "Pourquoi les programmeurs préfèrent le mode sombre?\nParce que la lumière attire les bugs! 🐛",
+            "Combien faut-il de programmeurs pour changer une ampoule?\nAucun. C'est un problème hardware. 💡",
+            "Pourquoi les développeurs Java portent des lunettes?\nParce qu'ils ne peuvent pas C# 👓",
+            "Quelle est la façon orientée objet de devenir riche?\nL'héritage! 💰",
+            "Pourquoi les programmeurs n'aiment pas la nature?\nElle a trop de bugs! 🌿🐛"
+        ];
+        return `<span class="warning">${jokes[Math.floor(Math.random() * jokes.length)]}</span>`;
+    },
+
+    weather: () => {
+        const weathers = [
+            { icon: '☀️', desc: isEnglish ? 'Sunny' : 'Ensoleillé' },
+            { icon: '⛅', desc: isEnglish ? 'Partly Cloudy' : 'Partiellement nuageux' },
+            { icon: '🌧️', desc: isEnglish ? 'Rainy' : 'Pluvieux' },
+            { icon: '❄️', desc: isEnglish ? 'Snowy' : 'Neigeux' },
+            { icon: '⛈️', desc: isEnglish ? 'Stormy' : 'Orageux' }
+        ];
+        const weather = weathers[Math.floor(Math.random() * weathers.length)];
+        const temp = Math.floor(Math.random() * 30) + 5;
+        
+        return `<span class="info">
+${weather.icon} ${weather.desc}
+🌡️  ${temp}°C
+📍 Terminux City
+${isEnglish ? '(Simulated weather data)' : '(Données météo simulées)'}
+</span>`;
+    },
+
+    // Easter Eggs Bonus
+    uptime: () => {
+        const startTime = Date.now() - (Math.random() * 1000000);
+        const uptime = Math.floor((Date.now() - startTime) / 1000);
+        const days = Math.floor(uptime / 86400);
+        const hours = Math.floor((uptime % 86400) / 3600);
+        const minutes = Math.floor((uptime % 3600) / 60);
+        
+        return `<span class="info">${isEnglish ? 'System uptime' : 'Temps de fonctionnement'}: ${days}d ${hours}h ${minutes}m</span>`;
+    },
+
+    ping: (args) => {
+        const host = args || 'terminux.live';
+        const time = Math.floor(Math.random() * 50) + 10;
+        return `<span class="success">PING ${host}: 64 bytes, time=${time}ms ✓</span>`;
     }
 };
 
@@ -524,6 +718,14 @@ function getCompletions(input) {
     if (['ls', 'cd', 'cat', 'rm', 'nano', 'download', 'save'].includes(command)) {
         const currentDir = getDirectoryAtPath(currentPath);
         return Object.keys(currentDir.children).filter(name => name.startsWith(arg));
+    }
+    
+    if (['cowsay', 'lolcat', 'figlet'].includes(command)) {
+        // Suggestions pour commandes avec texte
+        const suggestions = isEnglish ? 
+            ['Hello World', 'Terminux', 'Welcome', 'Code is Art', 'Open Source'] :
+            ['Bonjour Monde', 'Terminux', 'Bienvenue', 'Le Code est Art', 'Open Source'];
+        return suggestions.filter(s => s.toLowerCase().startsWith(arg.toLowerCase()));
     }
     
     return [];

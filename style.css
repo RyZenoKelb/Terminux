@@ -188,6 +188,8 @@ body {
 .command-output {
     color: #cccccc;
     margin-bottom: 10px;
+    white-space: pre;
+    font-family: inherit;
 }
 
 .error {
