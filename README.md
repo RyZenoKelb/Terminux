@@ -2,6 +2,8 @@
 
 A modern web-based terminal simulator that recreates the authentic Ubuntu terminal experience directly in your browser.
 
+**🚀 [Try Terminux Live](https://terminux.live)**
+
 ![Terminux Screenshot](https://github.com/user-attachments/assets/b7e322b3-221b-46c4-99b5-636541f4150b)
 
 ## 🎯 About
@@ -84,6 +86,13 @@ Terminux is a fully functional terminal simulator built with vanilla web technol
 | `date` | Display current date/time | `date` |
 | `echo [text]` | Print text to terminal | `echo "Hello World"` |
 
+### Fun Commands
+| Command | Description | Example |
+|---------|-------------|---------|
+| `neofetch` | Show system information | `neofetch` |
+| `cowsay [text]` | ASCII cow with message | `cowsay Hello` |
+| `sl` | Steam locomotive animation | `sl` |
+
 ## 🎨 Design Features
 
 ### Visual Design
@@ -109,11 +118,12 @@ The application leverages modern web APIs while maintaining broad compatibility:
 
 ## 💡 Use Cases
 
-- **Educational tool** for learning terminal commands
-- **Development demos** showcasing web capabilities
-- **Portfolio projects** demonstrating technical skills
-- **Browser-based terminal** for environments without native access
-- **Interactive documentation** for command-line tutorials
+- **Educational tool** for learning terminal commands and Linux basics
+- **Interactive demonstrations** showcasing modern web development capabilities
+- **Portfolio projects** demonstrating advanced technical skills
+- **Browser-based terminal** for environments without native terminal access
+- **Fun terminal experience** with easter eggs and interactive commands
+- **Command-line tutorials** and interactive documentation
 
 ## 📊 Project Stats
 
@@ -125,7 +135,7 @@ The application leverages modern web APIs while maintaining broad compatibility:
 
 ---
 
-**🔓 Open Source Project** - View source code on [GitHub](https://github.com/RyZenoKelb/Terminux)
+**🔓 Open Source Project** - View source code on [GitHub](https://github.com/RyZenoKelb/Terminux) | **🌐 Live Demo:** [terminux.live](https://terminux.live)
 
 *Terminux demonstrates modern web development capabilities while providing a practical, educational terminal experience accessible to everyone.*
 
@@ -215,6 +225,13 @@ Terminux est un simulateur de terminal entièrement fonctionnel construit avec d
 | `date` | Afficher la date/heure actuelle | `date` |
 | `echo [texte]` | Imprimer du texte dans le terminal | `echo "Bonjour Monde"` |
 
+### Commandes Amusantes
+| Commande | Description | Exemple |
+|----------|-------------|---------|
+| `neofetch` | Afficher les informations système | `neofetch` |
+| `cowsay [texte]` | Vache ASCII avec message | `cowsay Bonjour` |
+| `sl` | Animation de locomotive à vapeur | `sl` |
+
 ## 🎨 Fonctionnalités de Design
 
 ### Design Visuel
@@ -240,11 +257,12 @@ L'application exploite les APIs web modernes tout en maintenant une large compat
 
 ## 💡 Cas d'Usage
 
-- **Outil éducatif** pour apprendre les commandes du terminal
-- **Démos de développement** montrant les capacités web
-- **Projets de portfolio** démontrant les compétences techniques
-- **Terminal basé navigateur** pour environnements sans accès natif
-- **Documentation interactive** pour tutoriels en ligne de commande
+- **Outil éducatif** pour apprendre les commandes terminal et les bases Linux
+- **Démonstrations interactives** montrant les capacités modernes de développement web
+- **Projets de portfolio** démontrant des compétences techniques avancées
+- **Terminal basé navigateur** pour environnements sans accès terminal natif
+- **Expérience terminal amusante** avec easter eggs et commandes interactives
+- **Tutoriels en ligne de commande** et documentation interactive
 
 ## 📊 Statistiques du Projet
 
@@ -256,6 +274,6 @@ L'application exploite les APIs web modernes tout en maintenant une large compat
 
 ---
 
-**🔓 Projet Open Source** - Voir le code source sur [GitHub](https://github.com/RyZenoKelb/Terminux)
+**🔓 Projet Open Source** - Voir le code source sur [GitHub](https://github.com/RyZenoKelb/Terminux) | **🌐 Démo Live:** [terminux.live](https://terminux.live)
 
 *Terminux démontre les capacités modernes de développement web tout en fournissant une expérience de terminal pratique et éducative accessible à tous.*
