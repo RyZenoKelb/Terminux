@@ -1,0 +1,427 @@
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', monospace;
+    background-color: #2d1b69;
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Palette cachée */
+.color-input-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Fenêtre terminal */
+.terminal-window {
+    width: 100%;
+    max-width: 1000px;
+    height: 600px;
+    background: #000000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Barre de titre exacte comme Ubuntu */
+.title-bar {
+    background: #3c3c3c;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.control-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: block;
+}
+
+.control-btn.close {
+    background-color: #ff5f57;
+}
+
+.control-btn.minimize {
+    background-color: #ffbd2e;
+}
+
+.control-btn.maximize {
+    background-color: #28ca42;
+}
+
+.window-title {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    flex: 1;
+    margin-left: 20px;
+}
+
+.title-right {
+    width: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.palette-icon {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 3px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.palette-icon:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Contenu du terminal */
+.terminal-content {
+    height: calc(100% - 35px);
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 1.4;
+    background-color: #000000;
+    transition: background-color 0.3s ease;
+    overflow-y: auto;
+}
+
+.output {
+    flex: 0 0 auto;
+    padding-bottom: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.terminal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Ligne de commande */
+.input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 0;
+    flex: 0 0 auto;
+}
+
+.prompt {
+    color: #00ff00;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-right: 8px;
+}
+
+.command-input {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    flex: 1;
+    margin-left: 0;
+    padding: 0;
+    caret-color: #ffffff;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Styles de sortie */
+.command-line {
+    margin-bottom: 5px;
+}
+
+.command-output {
+    color: #cccccc;
+    margin-bottom: 10px;
+}
+
+.error {
+    color: #ff6b6b;
+}
+
+.success {
+    color: #51cf66;
+}
+
+.info {
+    color: #74c0fc;
+}
+
+.warning {
+    color: #ffd43b;
+}
+
+/* Éditeur de texte */
+.editor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.3s ease;
+}
+
+.editor.hidden {
+    display: none;
+}
+
+.editor-header {
+    background: #3c3c3c;
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2a2a2a;
+    height: 35px;
+}
+
+.editor-title {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.editor-filename {
+    color: #00ff00;
+    font-style: italic;
+    font-size: 13px;
+}
+
+.editor-content {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 15px;
+    outline: none;
+    resize: none;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
+}
+
+.editor-content::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.editor-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.editor-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.editor-footer {
+    background: #3c3c3c;
+    padding: 8px 15px;
+    border-top: 1px solid #2a2a2a;
+    height: 35px;
+}
+
+.editor-shortcuts {
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    color: #cccccc;
+    align-items: center;
+}
+
+.editor-shortcuts span {
+    white-space: nowrap;
+}
+
+/* Modal d'aide */
+.help-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.help-modal.hidden {
+    display: none;
+}
+
+.help-content {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    max-width: 400px;
+    width: 90%;
+}
+
+.help-content h3 {
+    color: #00ff00;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.help-content ul {
+    list-style: none;
+}
+
+.help-content li {
+    padding: 5px 0;
+    color: #cccccc;
+}
+
+.help-content strong {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    z-index: 100;
+    font-family: inherit;
+}
+
+.footer a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .terminal-window {
+        height: calc(100vh - 60px);
+        max-width: none;
+    }
+    
+    .terminal-content {
+        font-size: 12px;
+        padding: 10px;
+    }
+    
+    .editor-content {
+        font-size: 12px;
+        padding: 10px;
+    }
+    
+    .editor-shortcuts {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .palette-icon {
+        font-size: 10px;
+    }
+    
+    .footer {
+        font-size: 10px;
+        bottom: 5px;
+    }
+}
+
+/* Animations */
+.terminal-window {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sélection de texte */
+::selection {
+    background: rgba(0, 255, 0, 0.3);
+}
+
+::-moz-selection {
+    background: rgba(0, 255, 0, 0.3);
+}

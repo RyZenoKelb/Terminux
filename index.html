@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Palette de couleur discrète -->
+    <input type="color" id="colorInput" class="color-input-hidden" value="#1a1a1a">
+
+    <!-- Terminal avec barre de titre macOS -->
+    <div id="terminal" class="terminal-window">
+        <!-- Barre de titre exacte comme Ubuntu -->
+        <div class="title-bar">
+            <div class="window-controls">
+                <span class="control-btn close"></span>
+                <span class="control-btn minimize"></span>
+                <span class="control-btn maximize"></span>
+            </div>
+            <div class="window-title">Terminal ~ Ubuntu</div>
+            <div class="title-right">
+                <button id="paletteBtn" class="palette-icon">🎨</button>
+            </div>
+        </div>
+
+        <!-- Terminal content -->
+        <div class="terminal-content">
+            <div id="output" class="output"></div>
+            <div class="input-line">
+                <span id="prompt" class="prompt">user@ubuntu:~$ </span>
+                <input type="text" id="commandInput" class="command-input" autofocus>
+            </div>
+        </div>
+    </div>
+
+    <!-- Éditeur de texte (caché initialement) -->
+    <div id="editor" class="editor hidden">
+        <div class="editor-header">
+            <span class="editor-title">GNU nano</span>
+            <span id="editorFilename" class="editor-filename"></span>
+        </div>
+        <textarea id="editorContent" class="editor-content" placeholder="Tapez votre texte ici..."></textarea>
+        <div class="editor-footer">
+            <div class="editor-shortcuts">
+                <span>^X Quitter</span>
+                <span>^S Sauvegarder</span>
+                <span>^W Rechercher</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Messages d'aide -->
+    <div id="helpModal" class="help-modal hidden">
+        <div class="help-content">
+            <h3 id="helpModalTitle">Raccourcis Éditeur</h3>
+            <ul>
+                <li><strong>Ctrl + S</strong> - <span id="helpCtrlS">Sauvegarder le fichier</span></li>
+                <li><strong>Ctrl + X</strong> - <span id="helpCtrlX">Quitter l'éditeur</span></li>
+                <li><strong>Ctrl + W</strong> - <span id="helpCtrlW">Rechercher dans le texte</span></li>
+                <li><strong>Esc</strong> - <span id="helpEsc">Fermer cette aide</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <span>🔓 Open Source Project - </span>
+        <a href="https://github.com/RyZenoKelb/Terminux" target="_blank" rel="noopener noreferrer">
+            GitHub Repository
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
