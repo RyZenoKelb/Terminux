@@ -2,7 +2,7 @@
 
 A modern web-based terminal simulator that recreates the authentic Ubuntu terminal experience directly in your browser.
 
-![Terminux Screenshot](https://via.placeholder.com/800x500/2d1b69/ffffff?text=Terminux+Terminal+Simulator)
+![Terminux Screenshot](https://github.com/user-attachments/assets/b7e322b3-221b-46c4-99b5-636541f4150b)
 
 ## 🎯 About
 
